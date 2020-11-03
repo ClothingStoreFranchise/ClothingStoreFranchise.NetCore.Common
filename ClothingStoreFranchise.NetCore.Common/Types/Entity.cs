@@ -8,8 +8,8 @@ namespace ClothingStoreFranchise.NetCore.Common.Types
 {
     public abstract class Entity<K> : IEquatable<Entity<K>>
     {
-        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long Id { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public virtual long Id { get; set; }
 
         /// <summary>
         /// Returns the unique identifier of each entity.

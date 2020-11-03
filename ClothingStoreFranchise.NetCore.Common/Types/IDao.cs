@@ -54,19 +54,6 @@ namespace ClothingStoreFranchise.NetCore.Common.Types
         Task<ICollection<TEntity>> LoadAllAsync();
 
         /// <summary>
-        /// Load all entities without any related entity
-        /// </summary>
-        /// <returns></returns>
-        Task<ICollection<TEntity>> LoadOnlyPropertiesAsync();
-
-        /// <summary>
-        /// Load all entities without any related entity, filtering them by a predicate
-        /// </summary>
-        /// <param name="predicate">condition of the query</param>
-        /// <returns></returns>
-        Task<ICollection<TEntity>> LoadOnlyPropertiesAsync(Expression<Func<TEntity, bool>> predicate);
-
-        /// <summary>
         /// Load all entities which fullfil a given predicate
         /// </summary>
         /// <param name="predicate">query condition</param>
@@ -141,6 +128,8 @@ namespace ClothingStoreFranchise.NetCore.Common.Types
         /// <param name="listAppId">list of app Ids of entities to be loaded</param>
         /// <returns></returns>
         Task<ICollection<TEntity>> LoadAsync(ICollection<TAppId> listAppId);
+
+        TEntity Load(TAppId appId);
 
         /// <summary>
         /// Load by id. Returns null if it does not exist
