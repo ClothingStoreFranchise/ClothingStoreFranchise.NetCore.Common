@@ -44,6 +44,41 @@ namespace ClothingStoreFranchise.NetCore.Common.EntityFramework
             await DeleteAsync(entity);
         }
 
+        public override async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            BeforeUpdateEntity(entity);
+
+            await SaveChangesAsync();
+            return entity;
+        }
+
+        public override async Task<ICollection<TEntity>> UpdateAsync(ICollection<TEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                BeforeUpdateEntity(entity);
+            }
+
+            await SaveChangesAsync();
+            return entities;
+        }
+
+        private void BeforeUpdateEntity(TEntity entity)
+        {
+            var local = Context.Set<TEntity>()
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(1));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                Context.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            Context.Entry(entity).State = EntityState.Modified;
+        }
+
         public virtual TEntity Load(TAppId appId)
         {
             return QueryTemplate()

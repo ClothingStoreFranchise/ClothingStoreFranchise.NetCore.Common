@@ -20,6 +20,7 @@ namespace ClothingStoreFranchise.NetCore.Common.EntityFramework
 #pragma warning restore S3442 // "abstract" classes should not have "public" constructors
         {
             Context = contextContainer;
+            
         }
 
         public async virtual Task<TEntity> CreateAsync(TEntity entity)
@@ -39,28 +40,9 @@ namespace ClothingStoreFranchise.NetCore.Common.EntityFramework
             return entities;
         }
 
-        public async virtual Task<TEntity> UpdateAsync(TEntity entity)
-        {
-            BeforeUpdateEntity(entity);
-            await SaveChangesAsync();
-            return entity;
-        }
+        public abstract Task<TEntity> UpdateAsync(TEntity entity);
 
-        public async virtual Task<ICollection<TEntity>> UpdateAsync(ICollection<TEntity> entities)
-        {
-            foreach (var entity in entities)
-            {
-                BeforeUpdateEntity(entity);
-            }
-            await SaveChangesAsync();
-            return entities;
-        }
-
-        protected virtual void BeforeUpdateEntity(TEntity entity)
-        {
-            // TODO check if this is really necessary
-            Context.Entry(entity).State = EntityState.Modified;
-        }
+        public abstract Task<ICollection<TEntity>> UpdateAsync(ICollection<TEntity> entities);
 
         public async virtual Task DeleteAsync(TEntity entity)
         {
