@@ -78,7 +78,7 @@ namespace ClothingStoreFranchise.NetCore.Common.RabbitMq.Impl
 
                 policy.Execute(() =>
                 {
-                    _connection = _connectionFactory
+                        _connection = _connectionFactory
                           .CreateConnection();
                 });
 

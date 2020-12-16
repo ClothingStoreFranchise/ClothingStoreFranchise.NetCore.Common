@@ -150,9 +150,9 @@ namespace ClothingStoreFranchise.NetCore.Common.EntityFramework
 
         public async virtual Task DeleteByIdAsync(ICollection<long> listId)
         {
-            var entities = listId.Select(id => FindByIdAsync(id));
-            await Task.WhenAll(entities);
-            await DeleteAsync((TEntity)entities);
+            var entities = await FindWhereAsync(t => listId.Contains(t.Id));
+            //await Task.WhenAll(entities);
+            await DeleteAsync(entities);
         }
 
         public async Task<TEntity> LoadOnlyPropertiesByIdAsync(long id)
