@@ -2,13 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>0.0.1</Version>
+    <Version>0.0.7</Version>
     <Authors>Jorge Aguilera</Authors>
     <Company>ClothingStoreFranchise</Company>
-    <PackageId>ClothingStoreFranchise.Common</PackageId>
+    <PackageId>ClothingStoreFranchise.NetCore.Common</PackageId>
     <PackageDescription>Common library for .Net Core microservices in ClothingStoreFranchise app.</PackageDescription>
     <RepositoryUrl>https://github.com/ClothingStoreFranchise/ClothingStoreFranchise.NetCore.Common</RepositoryUrl>
     <IsPackable>true</IsPackable>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
