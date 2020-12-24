@@ -1,32 +1,26 @@
-name: .NET
+name: Nuget Package action
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   build:
-
+    
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-    - name: Restore dependencies
-      run: dotnet restore
-      working-directory: ./ClothingStoreFranchise.NetCore.Common/
     - name: Build
-      run: dotnet build --no-restore
-      working-directory: ./ClothingStoreFranchise.NetCore.Common/
+      run: dotnet build --configuration Release
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Publish  
-      uses: brandedoutcast/publish-nuget@v2.5.2  
-      with:   
-       PROJECT_FILE_PATH: ClothingStoreFranchise.NetCore.Common/ClothingStoreFranchise.NetCore.Common.csproj  
-       NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    - name: Restore dependencies
+      run: dotnet pack ClothingStoreFranchise.NetCore.Common.csproj --output nuget-packages --configuration Release
+    - name: Push with dotnet
+      run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
