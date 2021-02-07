@@ -1,2 +1,6 @@
 # ClothingStoreFranchise.NetCore.Common
-.Net Core common library for .Net Core microservices.  
+
+**Description**
+----------------
+
+.Net Core common library for .Net Core microservices.
