@@ -13,6 +13,11 @@ namespace ClothingStoreFranchise.NetCore.Common.Constants
             return new AuthorizationPolicyBuilder().RequireAuthenticatedUser().RequireRole(Admin).Build();
         }
 
+        public static AuthorizationPolicy CustomerPolicy()
+        {
+            return new AuthorizationPolicyBuilder().RequireAuthenticatedUser().RequireRole(Customer).Build();
+        }
+
         public static AuthorizationPolicy CustomerAdminPolicy()
         {
             return new AuthorizationPolicyBuilder().RequireAuthenticatedUser().RequireRole(Customer, Admin).Build();

@@ -1,4 +1,5 @@
-﻿using ClothingStoreFranchise.NetCore.Common.Extensible;
+﻿using ClothingStoreFranchise.NetCore.Common.Exceptions;
+using ClothingStoreFranchise.NetCore.Common.Extensible;
 using ClothingStoreFranchise.NetCore.Common.Types;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,7 +29,7 @@ namespace ClothingStoreFranchise.NetCore.Common.EntityFramework
 
             if (entity == null)
             {
-                //throw new EntityDoesNotExistException("Trying to delete a non existing entity");
+                throw new EntityDoesNotExistException("Trying to delete a non existing entity");
             }
 
             await DeleteAsync(entity);
@@ -39,7 +40,7 @@ namespace ClothingStoreFranchise.NetCore.Common.EntityFramework
             var entity = await LoadAsync(listAppId);
             if (entity == null)
             {
-                //throw new EntityDoesNotExistException("Trying to delete a non existing entity");
+                throw new EntityDoesNotExistException("Trying to delete a non existing entity");
             }
             await DeleteAsync(entity);
         }
@@ -92,7 +93,7 @@ namespace ClothingStoreFranchise.NetCore.Common.EntityFramework
 
             if (entity == null)
             {
-                //throw new EntityDoesNotExistException();
+                throw new EntityDoesNotExistException();
             }
             return entity;
         }
